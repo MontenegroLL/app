@@ -1,0 +1,53 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:recommended", "group:monorepos", ":semanticCommits"],
+  "timezone": "America/Sao_Paulo",
+  "schedule": ["before 6am on monday"],
+  "labels": ["dependencies"],
+  "prConcurrentLimit": 5,
+  "prHourlyLimit": 2,
+  "lockFileMaintenance": {
+    "enabled": true,
+    "schedule": ["before 6am on the first day of the month"]
+  },
+  "packageRules": [
+    {
+      "description": "Agrupa todo o ecossistema Medusa — devem atualizar juntos.",
+      "groupName": "Medusa",
+      "matchPackageNames": ["/^@medusajs//"]
+    },
+    {
+      "description": "Agrupa React e tipos relacionados.",
+      "groupName": "React",
+      "matchPackageNames": ["react", "react-dom", "/^@types/react/"]
+    },
+    {
+      "description": "Agrupa ferramentas de lint/format.",
+      "groupName": "Lint & Format",
+      "matchPackageNames": [
+        "@biomejs/biome",
+        "eslint",
+        "/^@typescript-eslint//"
+      ]
+    },
+    {
+      "description": "Agrupa dependências de teste.",
+      "groupName": "Testing",
+      "matchPackageNames": ["/^(vitest|jest|playwright|@playwright/)/"]
+    },
+    {
+      "description": "Não atualizar Node abaixo da versão mínima do projeto (>=22.22.0).",
+      "matchManagers": ["nodenv", "nvm", "asdf"],
+      "enabled": true
+    },
+    {
+      "description": "Patch e minor automaticamente; major exige aprovação humana.",
+      "matchUpdateTypes": ["patch", "minor", "pin", "digest"],
+      "automerge": false
+    }
+  ],
+  "vulnerabilityAlerts": {
+    "enabled": true,
+    "labels": ["security"]
+  }
+}
