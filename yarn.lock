@@ -4693,6 +4693,18 @@
   dependencies:
     "@swc/counter" "^0.1.3"
 
+"@t3-oss/env-core@0.13.11":
+  version "0.13.11"
+  resolved "https://registry.yarnpkg.com/@t3-oss/env-core/-/env-core-0.13.11.tgz#c8e0da67986978a6915783efa3535435416753b0"
+  integrity sha512-sM7GYY+KL7H/Hl0BE0inWfk3nRHZOLhmVn7sHGxaZt9FAR6KqREXAE+6TqKfiavfXmpRxO/OZ2QgKRd+oiBYRQ==
+
+"@t3-oss/env-nextjs@^0.13.11":
+  version "0.13.11"
+  resolved "https://registry.yarnpkg.com/@t3-oss/env-nextjs/-/env-nextjs-0.13.11.tgz#900ce47a3395118f286b740165a0394965a67ba8"
+  integrity sha512-NC+3j7YWgpzdFu1t5y/8wqibTK0lm5RS4bjXA1n8uwik3wIR4iZM4Fa+U2BaMa5k3Qk8RZiYhoAIX0WogmGkzg==
+  dependencies:
+    "@t3-oss/env-core" "0.13.11"
+
 "@tailwindcss/forms@^0.5.3":
   version "0.5.11"
   resolved "https://registry.yarnpkg.com/@tailwindcss/forms/-/forms-0.5.11.tgz#e77039e96fa7b87c3d001a991f77f9418e666700"
@@ -12392,3 +12404,8 @@ zod@4.2.0:
   version "4.2.0"
   resolved "https://registry.yarnpkg.com/zod/-/zod-4.2.0.tgz#01e86f2c2b6d525a1b9fa6dbe78beccad082118f"
   integrity sha512-Bd5fw9wlIhtqCCxotZgdTOMwGm1a0u75wARVEY9HMs1X17trvA/lMi4+MGK5EUfYkXVTbX8UDiDKW4OgzHVUZw==
+
+zod@^4.6.7:
+  version "4.6.7"
+  resolved "https://registry.yarnpkg.com/zod/-/zod-4.6.7.tgz#e806cf64a7f4e37635ce9f2f52c04c3766f75e5b"
+  integrity sha512-g8W2D2kU6a8untc053fX1uVBKzM7yqAxW/3zwk83+6RyF2+SKOuV+c0wBDhUwzV1PaGapmZH+rmcUzPf+3CGwg==
