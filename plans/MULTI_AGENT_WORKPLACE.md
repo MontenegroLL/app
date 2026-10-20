@@ -1,3 +1,22 @@
+### [Sessão 012] — 2026-10-19 (Remote GitHub + Renovate + CodeQL)
+- **Agente**: opencode (Implementador — CI/Segurança)
+- **Objetivo**: Configurar o remote GitHub e adicionar Renovate + CodeQL conforme o recon open-source.
+- **Entregáveis & Evidências**:
+  1. **Remote configurado**: `origin` → `https://github.com/MontenegroLL/app.git`. **Push realizado com sucesso** (`git ls-remote` confirma `refs/heads/main` = `8d51aca`; local rastreando `origin/main`, tree limpo).
+  2. **Renovate** (`renovate.json`): grupos (Medusa, React, Lint & Format, Testing), agendamento semanal, lockFileMaintenance mensal, alertas de vulnerabilidade, major sem automerge.
+  3. **CodeQL** (`.github/workflows/codeql.yml`): JavaScript/TypeScript, queries `security-extended`, build automático + varredura semanal (cron segunda 06:00 UTC).
+  4. Workflows validados (YAML) — total agora: `ci.yml`, `quality.yml`, `security.yml`, `codeql.yml`.
+- **Estado do Sistema**:
+  - Working tree limpo; **8 commits** na `main`, **sincronizados com `origin/main`**.
+  - Builds/typechecks permanecem verdes (0 erros) — nenhuma alteração de código de app nesta sessão (só CI/config).
+- **⚠️ Ponto de atenção crítico (verificar no GitHub)**:
+  - O repositório parece **privado** (API retornou 403). **CodeQL em repo privado exige GitHub Advanced Security (pago)**; em repo **público é gratuito**. Se o repo for privado, `codeql.yml` falhará no upload de resultados — avaliar tornar público ou habilitar GHAS.
+  - Verificar na aba **Actions** se `security.yml` (gitleaks) passou no primeiro push.
+- **Handoff para o Próximo Agente**:
+  - Conferir os runs em https://github.com/MontenegroLL/app/actions.
+  - Iniciar **Renovate** (instalar o app em github.com/apps/renovate) para o `renovate.json` ter efeito.
+  - Próximos itens do recon: suíte de testes (vitest + playwright), workaround Supabase (2 URLs), PoC `@medusapos/medusa-plugin`.
+
 ### [Sessão 011] — 2026-10-19 (Higiene + Ferramentas Base: Git, Biome, Husky, gitleaks, env, Changesets)
 - **Agente**: opencode (Implementador — Higiene & DX)
 - **Objetivo**: Aplicar as recomendações de higiene de repositório e ferramentas base do recon open-source.
