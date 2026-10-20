@@ -1,0 +1,35 @@
+# Normalize line endings across the team (multiple agents on Windows/Linux/macOS)
+# Text files are stored with LF in the repository.
+* text=auto eol=lf
+
+# Explicitly treat these as text
+*.ts   text eol=lf
+*.tsx  text eol=lf
+*.js   text eol=lf
+*.jsx  text eol=lf
+*.json text eol=lf
+*.md   text eol=lf
+*.css  text eol=lf
+*.yml  text eol=lf
+*.yaml text eol=lf
+
+# Windows-only scripts keep CRLF
+*.bat  text eol=crlf
+*.cmd  text eol=crlf
+*.ps1  text eol=crlf
+
+# Binary files — never normalize
+*.png  binary
+*.jpg  binary
+*.jpeg binary
+*.gif  binary
+*.ico  binary
+*.pdf  binary
+*.woff binary
+*.woff2 binary
+*.ttf  binary
+*.zip  binary
+*.exe  binary
+
+# Keep lockfiles and generated assets from merge noise
+yarn.lock text eol=lf

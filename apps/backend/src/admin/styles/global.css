@@ -1,0 +1,66 @@
+/* =========================================================
+   NUCLEO DELIVERY - WHITE-LABEL ADMIN RESTRICTIONS
+   Oculta visualmente configurações macro / internacionais
+   (Regiões, Taxas/Impostos, Locais de Estoque, etc.)
+   ========================================================= */
+
+/* 0. White-label brand token (sobrescrito em runtime pelo widget de login) */
+:root {
+  --brand-color: #E53935;
+}
+
+.nucleo-brand-accent {
+  color: var(--brand-color);
+}
+
+.nucleo-brand-bar {
+  background-color: var(--brand-color);
+}
+
+/* 1. Links diretos na Sidebar de Settings e menus de navegação */
+a[href*="/settings/regions"],
+a[href*="/settings/tax-regions"],
+a[href*="/settings/locations"],
+a[href*="/settings/return-reasons"],
+a[href*="/settings/refund-reasons"],
+a[href*="/settings/translations"] {
+  display: none !important;
+}
+
+/* 2. Containers LayoutComposer e wrappers no Settings Sidebar */
+[id*="settings-nav:/settings/regions"],
+[id*="settings-nav:/settings/tax-regions"],
+[id*="settings-nav:/settings/locations"],
+[id*="settings-nav:/settings/return-reasons"],
+[id*="settings-nav:/settings/refund-reasons"],
+[id*="settings-nav:/settings/translations"] {
+  display: none !important;
+}
+
+/* 3. Itens de lista ou wrappers pais imediatos */
+li:has(> a[href*="/settings/regions"]),
+li:has(> a[href*="/settings/tax-regions"]),
+li:has(> a[href*="/settings/locations"]),
+li:has(> a[href*="/settings/return-reasons"]),
+li:has(> a[href*="/settings/refund-reasons"]),
+li:has(> a[href*="/settings/translations"]),
+div:has(> a[href*="/settings/regions"]),
+div:has(> a[href*="/settings/tax-regions"]),
+div:has(> a[href*="/settings/locations"]),
+div:has(> a[href*="/settings/return-reasons"]),
+div:has(> a[href*="/settings/refund-reasons"]),
+div:has(> a[href*="/settings/translations"]) {
+  display: none !important;
+}
+
+/* 4. Na página de Detalhes da Loja (/settings/store): Ocultar linha de Região Padrão que leva a /settings/regions */
+div.grid:has(a[href*="/settings/regions"]) {
+  display: none !important;
+}
+
+/* 5. Na busca global: Ocultar resultados para áreas ocultas */
+div[role="option"]:has(a[href*="/settings/regions"]),
+div[role="option"]:has(a[href*="/settings/tax-regions"]),
+div[role="option"]:has(a[href*="/settings/locations"]) {
+  display: none !important;
+}
