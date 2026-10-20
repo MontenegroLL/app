@@ -1,4 +1,19 @@
-### [Sessão 007] — 2026-10-18 (Admin Food Service - Rotas + Telas)
+### [Sessão 011] — 2026-10-19 (Higiene + Ferramentas Base: Git, Biome, Husky, gitleaks, env, Changesets)
+- **Agente**: opencode (Implementador — Higiene & DX)
+- **Objetivo**: Aplicar as recomendações de higiene de repositório e ferramentas base do recon open-source.
+- **Entregáveis & Evidências**:
+  1. **Higiene**: segredos em texto puro movidos para `%USERPROFILE%\nucleo-secrets\` (fora do workspace; nada apagado). `.gitignore` reforçado + `.gitattributes` (LF).
+  2. **Git**: repositório inicializado em `nucleo-pdv/` (branch `main`). Commit inicial com 405 arquivos (dry-run confirmou: nenhum `.env`/`node_modules`/`.medusa`/segredo entrou).
+  3. **Biome 2.5.15** (`semi: false`, double quotes; `.agents/` excluído), aplicado em 300 arquivos. Husky + lint-staged no pre-commit.
+  4. **gitleaks** no CI (`.gitleaks.toml` + `.github/workflows/security.yml`).
+  5. **Env validado**: storefront com t3-env (`moduleResolution` → `bundler`); backend com Zod (CJS-safe). Runtime testado (rejeita valores inválidos).
+  6. **Changesets v2** + **CI** (`ci.yml`, `quality.yml`).
+- **Estado do Sistema (verificado)**: `yarn tsc --noEmit` 0 erros (backend e storefront); `yarn build` exit 0 em ambos; working tree limpo; 5 commits na `main`. Débito de lint legado: 98 erros (a11y do starter), não bloqueante.
+- **Handoff**: reduzir débito de lint incrementalmente e tornar Biome bloqueante; configurar remote GitHub; seguir com Renovate + CodeQL e PoC do `@medusapos/medusa-plugin`. **O repo git fica em `nucleo-pdv/`.**
+
+---
+
+
 - **Agente**: opencode (Implementador - Admin v2)
 - **Objetivo**: Expor a gestão do Food Service no Medusa Admin (rotas `/admin/restaurant/*` + páginas "Salão & Mesas" e "Modificadores" no menu lateral).
 - **Entregáveis & Evidências**:
