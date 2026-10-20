@@ -6,7 +6,7 @@
 
 /* 0. White-label brand token (sobrescrito em runtime pelo widget de login) */
 :root {
-  --brand-color: #E53935;
+  --brand-color: #e53935;
 }
 
 .nucleo-brand-accent {

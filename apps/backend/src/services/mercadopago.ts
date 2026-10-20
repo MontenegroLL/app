@@ -1,6 +1,6 @@
-import { MercadoPagoConfig, Payment, Preference } from "mercadopago"
-import { MedusaContainer } from "@medusajs/framework/types"
+import type { MedusaContainer } from "@medusajs/framework/types"
 import { ContainerRegistrationKeys } from "@medusajs/framework/utils"
+import { MercadoPagoConfig, Payment, Preference } from "mercadopago"
 
 export interface MercadoPagoConfigOptions {
   accessToken?: string
@@ -39,16 +39,25 @@ export class MercadoPagoService {
 
     if (containerOrConfig && "resolve" in containerOrConfig) {
       try {
-        this.logger = containerOrConfig.resolve(ContainerRegistrationKeys.LOGGER)
+        this.logger = containerOrConfig.resolve(
+          ContainerRegistrationKeys.LOGGER
+        )
       } catch {
         // Logger opcional
       }
-    } else if (containerOrConfig && "accessToken" in containerOrConfig && containerOrConfig.accessToken) {
+    } else if (
+      containerOrConfig &&
+      "accessToken" in containerOrConfig &&
+      containerOrConfig.accessToken
+    ) {
       accessToken = containerOrConfig.accessToken
     }
 
     if (!accessToken) {
-      this.log("warn", "[MercadoPago] MERCADO_PAGO_ACCESS_TOKEN não configurado no ambiente.")
+      this.log(
+        "warn",
+        "[MercadoPago] MERCADO_PAGO_ACCESS_TOKEN não configurado no ambiente."
+      )
     }
 
     this.client = new MercadoPagoConfig({
@@ -62,7 +71,10 @@ export class MercadoPagoService {
     this.preferenceClient = new Preference(this.client)
   }
 
-  protected log(level: "info" | "warn" | "error" | "debug", message: string): void {
+  protected log(
+    level: "info" | "warn" | "error" | "debug",
+    message: string
+  ): void {
     if (this.logger && typeof this.logger[level] === "function") {
       this.logger[level](message)
     } else {
@@ -73,9 +85,14 @@ export class MercadoPagoService {
   /**
    * Cria um PIX Dinâmico Instantâneo para Balcão ou Comanda de Mesa
    */
-  public async createPixPayment(input: CreatePixPaymentInput): Promise<PixPaymentResponse> {
+  public async createPixPayment(
+    input: CreatePixPaymentInput
+  ): Promise<PixPaymentResponse> {
     try {
-      this.log("info", `[MercadoPago] Gerando PIX de R$ ${(input.amount).toFixed(2)} para pedido: ${input.orderId || "Balcão"}`)
+      this.log(
+        "info",
+        `[MercadoPago] Gerando PIX de R$ ${(input.amount).toFixed(2)} para pedido: ${input.orderId || "Balcão"}`
+      )
 
       const body: any = {
         transaction_amount: Number(input.amount),
@@ -134,7 +151,10 @@ export class MercadoPagoService {
         metadata: payment.metadata,
       }
     } catch (error: any) {
-      this.log("error", `[MercadoPago] Erro ao consultar pagamento ${paymentId}: ${error.message}`)
+      this.log(
+        "error",
+        `[MercadoPago] Erro ao consultar pagamento ${paymentId}: ${error.message}`
+      )
       throw error
     }
   }
@@ -142,13 +162,19 @@ export class MercadoPagoService {
   /**
    * Realiza estorno total ou parcial de um pagamento
    */
-  public async refundPayment(paymentId: string | number, amount?: number): Promise<any> {
+  public async refundPayment(
+    paymentId: string | number,
+    amount?: number
+  ): Promise<any> {
     try {
       this.log("info", `[MercadoPago] Estornando pagamento ${paymentId}`)
       const refund = await this.paymentClient.cancel({ id: paymentId })
       return refund
     } catch (error: any) {
-      this.log("error", `[MercadoPago] Erro ao estornar pagamento ${paymentId}: ${error.message}`)
+      this.log(
+        "error",
+        `[MercadoPago] Erro ao estornar pagamento ${paymentId}: ${error.message}`
+      )
       throw error
     }
   }

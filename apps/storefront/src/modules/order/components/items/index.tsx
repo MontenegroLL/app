@@ -1,8 +1,7 @@
 import repeat from "@lib/util/repeat"
-import { HttpTypes } from "@medusajs/types"
-import { Table } from "@modules/common/components/ui"
-
+import type { HttpTypes } from "@medusajs/types"
 import Divider from "@modules/common/components/divider"
+import { Table } from "@modules/common/components/ui"
 import Item from "@modules/order/components/item"
 import SkeletonLineItem from "@modules/skeletons/components/skeleton-line-item"
 

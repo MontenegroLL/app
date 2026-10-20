@@ -1,4 +1,4 @@
-import { MedusaContainer } from "@medusajs/framework/types"
+import type { MedusaContainer } from "@medusajs/framework/types"
 import { ContainerRegistrationKeys } from "@medusajs/framework/utils"
 import { IfoodService } from "../services/ifood"
 

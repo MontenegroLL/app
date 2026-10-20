@@ -1,5 +1,5 @@
-import { createCartWorkflow } from "@medusajs/medusa/core-flows"
 import { MedusaError } from "@medusajs/framework/utils"
+import { createCartWorkflow } from "@medusajs/medusa/core-flows"
 import { RESTAURANT_MODULE } from "../../modules/restaurant"
 
 createCartWorkflow.hooks.validate(async ({ input }, { container }) => {
@@ -48,7 +48,11 @@ createCartWorkflow.hooks.validate(async ({ input }, { container }) => {
       )
     }
 
-    if (tableId && tab.restaurant_table_id && tab.restaurant_table_id !== tableId) {
+    if (
+      tableId &&
+      tab.restaurant_table_id &&
+      tab.restaurant_table_id !== tableId
+    ) {
       throw new MedusaError(
         MedusaError.Types.INVALID_DATA,
         `Comanda "${tab.id}" nao pertence a mesa "${tableId}"`

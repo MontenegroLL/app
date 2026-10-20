@@ -1,7 +1,6 @@
-import { Metadata } from "next"
-import { Suspense } from "react"
-
 import VerifyAccount from "@modules/account/components/verify-account"
+import type { Metadata } from "next"
+import { Suspense } from "react"
 
 export const metadata: Metadata = {
   title: "Verifique seu e-mail",

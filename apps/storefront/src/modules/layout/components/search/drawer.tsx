@@ -2,7 +2,8 @@
 
 import { Dialog, Transition } from "@headlessui/react"
 import { XMark } from "@medusajs/icons"
-import React, { Fragment } from "react"
+import type React from "react"
+import { Fragment } from "react"
 
 type SearchDrawerProps = {
   isOpen: boolean

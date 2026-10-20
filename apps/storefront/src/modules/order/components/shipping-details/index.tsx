@@ -1,8 +1,7 @@
 import { convertToLocale } from "@lib/util/money"
-import { HttpTypes } from "@medusajs/types"
-import { Heading, Text } from "@modules/common/components/ui"
-
+import type { HttpTypes } from "@medusajs/types"
 import Divider from "@modules/common/components/divider"
+import { Heading, Text } from "@modules/common/components/ui"
 
 type ShippingDetailsProps = {
   order: HttpTypes.StoreOrder
@@ -54,7 +53,9 @@ const ShippingDetails = ({ order }: ShippingDetailsProps) => {
           className="flex flex-col w-1/3"
           data-testid="shipping-method-summary"
         >
-          <Text className="txt-medium-plus text-ui-fg-base mb-1">Método de envio</Text>
+          <Text className="txt-medium-plus text-ui-fg-base mb-1">
+            Método de envio
+          </Text>
           <Text className="txt-medium text-ui-fg-subtle">
             {(order.shipping_methods?.[0] as { name?: string })?.name} (
             {convertToLocale({

@@ -1,10 +1,9 @@
 "use client"
 
-import { XMarkMini } from "@medusajs/icons"
-import { useClearRefinements, useCurrentRefinements } from "react-instantsearch"
-
 import { indexedCurrency, priceAttribute } from "@lib/search-client"
 import { convertToLocale } from "@lib/util/money"
+import { XMarkMini } from "@medusajs/icons"
+import { useClearRefinements, useCurrentRefinements } from "react-instantsearch"
 import {
   CATEGORY_ATTRIBUTE,
   LABELS_ATTRIBUTE,

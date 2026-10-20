@@ -1,12 +1,11 @@
 "use client"
 
-import * as Accordion from "@radix-ui/react-accordion"
-import { useEffect, useState } from "react"
-
-import { ChevronDownMini } from "@medusajs/icons"
 import { sdk } from "@lib/config"
-import { HttpTypes } from "@medusajs/types"
+import { ChevronDownMini } from "@medusajs/icons"
+import type { HttpTypes } from "@medusajs/types"
+import * as Accordion from "@radix-ui/react-accordion"
 import clsx from "clsx"
+import { useEffect, useState } from "react"
 
 type OptionsPickerProps = {
   selectedValueIds: string[]

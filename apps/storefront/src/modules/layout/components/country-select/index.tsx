@@ -7,13 +7,12 @@ import {
   ListboxOptions,
   Transition,
 } from "@headlessui/react"
+import { updateRegion } from "@lib/data/cart"
+import type { StateType } from "@lib/hooks/use-toggle-state"
+import type { HttpTypes } from "@medusajs/types"
+import { useParams, usePathname } from "next/navigation"
 import { Fragment, useEffect, useMemo, useState } from "react"
 import ReactCountryFlag from "react-country-flag"
-
-import { StateType } from "@lib/hooks/use-toggle-state"
-import { useParams, usePathname } from "next/navigation"
-import { updateRegion } from "@lib/data/cart"
-import { HttpTypes } from "@medusajs/types"
 
 type CountryOption = {
   country: string
@@ -36,14 +35,13 @@ const CountrySelect = ({ toggleState, regions }: CountrySelectProps) => {
 
   const options = useMemo(() => {
     return regions
-      ?.map((r) => {
+      ?.flatMap((r) => {
         return r.countries?.map((c) => ({
           country: c.iso_2 ?? "",
           region: r.id,
           label: c.display_name ?? "",
         }))
       })
-      .flat()
       .filter((o): o is CountryOption => !!o)
       .sort((a, b) => a.label.localeCompare(b.label))
   }, [regions])

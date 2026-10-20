@@ -1,15 +1,17 @@
-import { Github } from "@medusajs/icons";
-import { Button, Heading } from "@modules/common/components/ui";
+import { Github } from "@medusajs/icons"
+import { Button, Heading } from "@modules/common/components/ui"
+
 const Hero = () => {
   return (
     <div className="h-[75vh] w-full border-b border-ui-border-base relative bg-ui-bg-subtle">
       <div className="absolute inset-0 z-10 flex flex-col justify-center items-center text-center small:p-32 gap-6">
         <span>
-            <Heading
+          <Heading
             level="h1"
             className="text-3xl leading-10 text-ui-fg-base font-normal"
           >
-            Bem-vindo ao {process.env.NEXT_PUBLIC_RESTAURANT_NAME || "Nucleo Delivery"}
+            Bem-vindo ao{" "}
+            {process.env.NEXT_PUBLIC_RESTAURANT_NAME || "Nucleo Delivery"}
           </Heading>
           <Heading
             level="h2"
@@ -18,14 +20,18 @@ const Hero = () => {
             Cardápio completo e entrega rápida
           </Heading>
         </span>
-        <a href="https://github.com/medusajs/dtc-starter" target="_blank">
+        <a
+          href="https://github.com/medusajs/dtc-starter"
+          target="_blank"
+          rel="noopener"
+        >
           <Button variant="secondary">
             Ver no GitHub <Github />
           </Button>
         </a>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Hero;
+export default Hero

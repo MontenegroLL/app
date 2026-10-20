@@ -2,7 +2,13 @@ import type { CSSProperties } from "react"
 
 export type TableStatus = "available" | "occupied" | "reserved" | "billing"
 
-export type StatusBadgeColor = "green" | "red" | "orange" | "blue" | "grey" | "purple"
+export type StatusBadgeColor =
+  | "green"
+  | "red"
+  | "orange"
+  | "blue"
+  | "grey"
+  | "purple"
 
 export type RestaurantTab = {
   id: string
@@ -90,9 +96,7 @@ export async function adminFetch<T>(
   }
 
   if (!response.ok) {
-    throw new Error(
-      body?.message ?? `Falha na requisição (${response.status})`
-    )
+    throw new Error(body?.message ?? `Falha na requisição (${response.status})`)
   }
 
   return body as T

@@ -2,7 +2,7 @@
 
 import { sdk } from "@lib/config"
 import medusaError from "@lib/util/medusa-error"
-import { HttpTypes } from "@medusajs/types"
+import type { HttpTypes } from "@medusajs/types"
 import { revalidateTag } from "next/cache"
 import { redirect } from "next/navigation"
 import {
@@ -13,8 +13,8 @@ import {
   removeCartId,
   setCartId,
 } from "./cookies"
-import { getRegion } from "./regions"
 import { getLocale } from "./locale-actions"
+import { getRegion } from "./regions"
 
 /**
  * Retrieves a cart by its ID. If no ID is provided, it will use the cart ID from the cookies.

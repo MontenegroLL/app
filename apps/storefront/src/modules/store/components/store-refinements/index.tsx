@@ -1,12 +1,11 @@
 "use client"
 
-import { useSortBy } from "react-instantsearch"
-
 import FilterRadioGroup from "@modules/common/components/filter-radio-group"
+import { useSortBy } from "react-instantsearch"
 import {
   CATEGORY_ATTRIBUTE,
-  LABELS_ATTRIBUTE,
   getSortOptions,
+  LABELS_ATTRIBUTE,
 } from "./attributes"
 import CurrentRefinements from "./current-refinements"
 import OnSaleToggle from "./on-sale-toggle"

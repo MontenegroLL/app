@@ -1,6 +1,6 @@
-import React from "react"
+import type React from "react"
 
-import { IconProps } from "types/icon"
+import type { IconProps } from "types/icon"
 
 const ChevronUpDown: React.FC<IconProps> = ({
   size = "16",
@@ -35,4 +35,3 @@ const ChevronUpDown: React.FC<IconProps> = ({
 }
 
 export default ChevronUpDown
-

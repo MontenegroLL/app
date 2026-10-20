@@ -1,7 +1,6 @@
-import { clx } from "@modules/common/components/ui"
-
 import { getProductPrice } from "@lib/util/get-product-price"
-import { HttpTypes } from "@medusajs/types"
+import type { HttpTypes } from "@medusajs/types"
+import { clx } from "@modules/common/components/ui"
 
 export default function ProductPrice({
   product,

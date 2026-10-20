@@ -1,8 +1,7 @@
 import { Container, clx } from "@modules/common/components/ui"
-import Image from "next/image"
-import React from "react"
-
 import PlaceholderImage from "@modules/common/icons/placeholder-image"
+import Image from "next/image"
+import type React from "react"
 
 type ThumbnailProps = {
   thumbnail?: string | null

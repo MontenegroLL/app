@@ -1,8 +1,7 @@
 "use client"
 
-import { usePagination } from "react-instantsearch"
-
 import { clx } from "@modules/common/components/ui"
+import { usePagination } from "react-instantsearch"
 
 const SearchPagination = () => {
   const { pages, currentRefinement, nbPages, refine } = usePagination({

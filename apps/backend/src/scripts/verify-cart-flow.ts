@@ -1,12 +1,15 @@
-﻿import { ExecArgs } from "@medusajs/framework/types"
+﻿import type { ExecArgs } from "@medusajs/framework/types"
 import { ContainerRegistrationKeys } from "@medusajs/framework/utils"
-import { createCartWorkflow, refreshCartItemsWorkflow } from "@medusajs/medusa/core-flows"
-import { RESTAURANT_MODULE } from "../modules/restaurant"
+import {
+  createCartWorkflow,
+  refreshCartItemsWorkflow,
+} from "@medusajs/medusa/core-flows"
+import * as cartItemsRoute from "../api/store/carts/[id]/restaurant-items/route"
 import * as modifierGroupsRoute from "../api/store/restaurant/modifier-groups/route"
 import * as tablesRoute from "../api/store/restaurant/tables/[token]/route"
-import * as openTabRoute from "../api/store/restaurant/tabs/route"
 import * as closeTabRoute from "../api/store/restaurant/tabs/[id]/close/route"
-import * as cartItemsRoute from "../api/store/carts/[id]/restaurant-items/route"
+import * as openTabRoute from "../api/store/restaurant/tabs/route"
+import { RESTAURANT_MODULE } from "../modules/restaurant"
 
 type Handler = (req: any, res: any) => Promise<void>
 
@@ -78,9 +81,15 @@ export default async function verifyRestaurantRoutes({ container }: ExecArgs) {
   const catupiry = allModifiers.find((modifier) => modifier.name === "Catupiry")
   const cheddar = allModifiers.find((modifier) => modifier.name === "Cheddar")
 
-  const groupsResult = await call(modifierGroupsRoute.GET, container, {}, {}, {
-    product_id: product.id,
-  })
+  const groupsResult = await call(
+    modifierGroupsRoute.GET,
+    container,
+    {},
+    {},
+    {
+      product_id: product.id,
+    }
+  )
   const group = groupsResult.payload?.modifier_groups?.[0]
   check(
     "modifier-groups",
@@ -93,7 +102,9 @@ export default async function verifyRestaurantRoutes({ container }: ExecArgs) {
     `group.product_id=${group?.product_id}`
   )
 
-  const tableResult = await call(tablesRoute.GET, container, { token: "mesa-01" })
+  const tableResult = await call(tablesRoute.GET, container, {
+    token: "mesa-01",
+  })
   check(
     "table-by-token",
     tableResult.ok && tableResult.payload?.table?.name_or_number === "Mesa 01",
@@ -120,27 +131,43 @@ export default async function verifyRestaurantRoutes({ container }: ExecArgs) {
     ])
   }
 
-  const openResult = await call(openTabRoute.POST, container, {}, {
-    restaurant_table_id: tableId,
-    customer_name: "Cliente Teste",
-  })
+  const openResult = await call(
+    openTabRoute.POST,
+    container,
+    {},
+    {
+      restaurant_table_id: tableId,
+      customer_name: "Cliente Teste",
+    }
+  )
   const openedTabId = openResult.payload?.tab?.id
   check(
     "open-tab",
-    openResult.ok && !!openedTabId && openResult.payload?.table?.status === "occupied",
+    openResult.ok &&
+      !!openedTabId &&
+      openResult.payload?.table?.status === "occupied",
     `tab=${openedTabId} table.status=${openResult.payload?.table?.status}`
   )
 
-  const reopenResult = await call(openTabRoute.POST, container, {}, {
-    restaurant_table_id: tableId,
-  })
+  const reopenResult = await call(
+    openTabRoute.POST,
+    container,
+    {},
+    {
+      restaurant_table_id: tableId,
+    }
+  )
   check(
     "open-tab-idempotent",
-    reopenResult.ok && reopenResult.status === 200 && reopenResult.payload?.tab?.id === openedTabId,
+    reopenResult.ok &&
+      reopenResult.status === 200 &&
+      reopenResult.payload?.tab?.id === openedTabId,
     `status=${reopenResult.status} tab=${reopenResult.payload?.tab?.id}`
   )
 
-  const tableWithTab = await call(tablesRoute.GET, container, { token: "mesa-01" })
+  const tableWithTab = await call(tablesRoute.GET, container, {
+    token: "mesa-01",
+  })
   check(
     "table-by-token-open-tab",
     tableWithTab.payload?.tab?.id === openedTabId,
@@ -170,11 +197,16 @@ export default async function verifyRestaurantRoutes({ container }: ExecArgs) {
     invalidTableCart
   )
 
-  const withModifier = await call(cartItemsRoute.POST, container, { id: cart.id }, {
-    variant_id: catupiryVariant.id,
-    quantity: 1,
-    modifiers: [{ id: catupiry.id, quantity: 1 }],
-  })
+  const withModifier = await call(
+    cartItemsRoute.POST,
+    container,
+    { id: cart.id },
+    {
+      variant_id: catupiryVariant.id,
+      quantity: 1,
+      modifiers: [{ id: catupiry.id, quantity: 1 }],
+    }
+  )
   const item = withModifier.payload?.cart?.items?.[0]
   check(
     "add-item-with-modifier",
@@ -283,7 +315,5 @@ export default async function verifyRestaurantRoutes({ container }: ExecArgs) {
     closeAgain.error ?? `status=${closeAgain.status}`
   )
 
-  logger.info(
-    `ROUTES_VERIFICATION_DONE failures=${failures} cart=${cart.id}`
-  )
+  logger.info(`ROUTES_VERIFICATION_DONE failures=${failures} cart=${cart.id}`)
 }

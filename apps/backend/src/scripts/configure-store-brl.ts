@@ -1,4 +1,4 @@
-import { ExecArgs } from "@medusajs/framework/types"
+import type { ExecArgs } from "@medusajs/framework/types"
 import { ContainerRegistrationKeys } from "@medusajs/framework/utils"
 import {
   createRegionsWorkflow,
@@ -52,18 +52,20 @@ export default async function configureStoreBrl({ container }: ExecArgs) {
 
   if (!brazilRegionId) {
     logger.info("Criando regiao 'Brasil' com moeda BRL...")
-    const { result: regionResult } = await createRegionsWorkflow(container).run({
-      input: {
-        regions: [
-          {
-            name: "Brasil",
-            currency_code: "brl",
-            countries: ["br"],
-            payment_providers: ["pp_system_default"],
-          },
-        ],
-      },
-    })
+    const { result: regionResult } = await createRegionsWorkflow(container).run(
+      {
+        input: {
+          regions: [
+            {
+              name: "Brasil",
+              currency_code: "brl",
+              countries: ["br"],
+              payment_providers: ["pp_system_default"],
+            },
+          ],
+        },
+      }
+    )
     brazilRegionId = regionResult[0].id
 
     try {
@@ -100,7 +102,9 @@ export default async function configureStoreBrl({ container }: ExecArgs) {
 
   if (!defaultLocationId) {
     logger.info("Criando localizacao de estoque 'Deposito Central'...")
-    const { result: locationResult } = await createStockLocationsWorkflow(container).run({
+    const { result: locationResult } = await createStockLocationsWorkflow(
+      container
+    ).run({
       input: {
         locations: [
           {
@@ -117,7 +121,9 @@ export default async function configureStoreBrl({ container }: ExecArgs) {
     defaultLocationId = locationResult[0].id
     defaultLocationName = locationResult[0].name
   } else {
-    logger.info(`Localizacao de estoque encontrada: ${defaultLocationName} (${defaultLocationId})`)
+    logger.info(
+      `Localizacao de estoque encontrada: ${defaultLocationName} (${defaultLocationId})`
+    )
   }
 
   // 4. Nome da loja a partir do .env
@@ -127,7 +133,9 @@ export default async function configureStoreBrl({ container }: ExecArgs) {
     store.name ||
     "Nucleo Delivery"
 
-  logger.info(`Atualizando loja para Moeda BRL (Real Brasileiro) e Regiao Brasil...`)
+  logger.info(
+    `Atualizando loja para Moeda BRL (Real Brasileiro) e Regiao Brasil...`
+  )
 
   await updateStoresWorkflow(container).run({
     input: {

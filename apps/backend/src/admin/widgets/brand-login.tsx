@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react"
 import { defineWidgetConfig } from "@medusajs/admin-sdk"
+import React, { useEffect, useState } from "react"
 
 const RESTAURANT_NAME =
   process.env.NEXT_PUBLIC_RESTAURANT_NAME ||

@@ -1,9 +1,8 @@
-import { HttpTypes } from "@medusajs/types"
-import { Table, Text } from "@modules/common/components/ui"
-
+import type { HttpTypes } from "@medusajs/types"
 import LineItemOptions from "@modules/common/components/line-item-options"
 import LineItemPrice from "@modules/common/components/line-item-price"
 import LineItemUnitPrice from "@modules/common/components/line-item-unit-price"
+import { Table, Text } from "@modules/common/components/ui"
 import Thumbnail from "@modules/products/components/thumbnail"
 
 type ItemProps = {

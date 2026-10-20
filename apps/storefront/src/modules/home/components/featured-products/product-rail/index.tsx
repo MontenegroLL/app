@@ -1,8 +1,7 @@
 import { listProducts } from "@lib/data/products"
-import { HttpTypes } from "@medusajs/types"
-import { Text } from "@modules/common/components/ui"
-
+import type { HttpTypes } from "@medusajs/types"
 import InteractiveLink from "@modules/common/components/interactive-link"
+import { Text } from "@modules/common/components/ui"
 import ProductPreview from "@modules/products/components/product-preview"
 
 export default async function ProductRail({

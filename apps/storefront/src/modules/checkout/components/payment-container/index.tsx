@@ -1,12 +1,10 @@
 import { Radio as RadioGroupOption } from "@headlessui/react"
-import { Text, clx } from "@modules/common/components/ui"
-import React, { useContext, type JSX } from "react"
-
-import Radio from "@modules/common/components/radio"
-
 import { isManual } from "@lib/constants"
+import Radio from "@modules/common/components/radio"
+import { clx, Text } from "@modules/common/components/ui"
 import SkeletonCardDetails from "@modules/skeletons/components/skeleton-card-details"
 import { PaymentElement } from "@stripe/react-stripe-js"
+import React, { type JSX, useContext } from "react"
 import PaymentTest from "../payment-test"
 import { StripeContext } from "../payment-wrapper/stripe-wrapper"
 

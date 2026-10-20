@@ -1,11 +1,10 @@
 "use client"
 
+import type { HttpTypes } from "@medusajs/types"
 import Back from "@modules/common/icons/back"
 import FastDelivery from "@modules/common/icons/fast-delivery"
 import Refresh from "@modules/common/icons/refresh"
-
 import Accordion from "./accordion"
-import { HttpTypes } from "@medusajs/types"
 
 type ProductTabsProps = {
   product: HttpTypes.StoreProduct
@@ -87,8 +86,8 @@ const ShippingInfoTab = () => {
           <div>
             <span className="font-semibold">Entrega rápida</span>
             <p className="max-w-sm">
-              Seu pacote chegará em 3 a 5 dias úteis no seu ponto de retirada
-              ou no conforto da sua casa.
+              Seu pacote chegará em 3 a 5 dias úteis no seu ponto de retirada ou
+              no conforto da sua casa.
             </p>
           </div>
         </div>

@@ -1,4 +1,3 @@
-import React, { useState } from "react"
 import { defineRouteConfig } from "@medusajs/admin-sdk"
 import {
   Buildings,
@@ -22,16 +21,17 @@ import {
   toast,
 } from "@medusajs/ui"
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
+import React, { useState } from "react"
 import {
-  RestaurantTable,
-  TABLE_STATUS_META,
-  TABLE_STATUS_ORDER,
-  TableQrCode,
-  TableStatus,
   brandButtonStyle,
   createTable,
   getTableQrCode,
   listTables,
+  type RestaurantTable,
+  TABLE_STATUS_META,
+  TABLE_STATUS_ORDER,
+  type TableQrCode,
+  type TableStatus,
   updateTable,
 } from "../../lib/restaurant-api"
 import "../../styles/global.css"

@@ -1,4 +1,4 @@
-import { ExecArgs } from "@medusajs/framework/types"
+import type { ExecArgs } from "@medusajs/framework/types"
 import { ContainerRegistrationKeys } from "@medusajs/framework/utils"
 
 export default async function verifyRestaurantModule({ container }: ExecArgs) {
@@ -31,7 +31,9 @@ export default async function verifyRestaurantModule({ container }: ExecArgs) {
     })
     logger.info(`TABS_COUNT: ${tabs.length}`)
 
-    logger.info("VERIFICATION_SUCCESS: Todas as 4 entidades DML estao ativas e consultaveis no Medusa!")
+    logger.info(
+      "VERIFICATION_SUCCESS: Todas as 4 entidades DML estao ativas e consultaveis no Medusa!"
+    )
   } catch (error: any) {
     logger.error(`VERIFICATION_ERROR: ${error.message}`)
   }

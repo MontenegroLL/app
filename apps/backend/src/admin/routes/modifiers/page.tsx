@@ -1,4 +1,3 @@
-import React, { useState } from "react"
 import { defineRouteConfig } from "@medusajs/admin-sdk"
 import { EllipsisHorizontal, Plus, Spinner, Swatch } from "@medusajs/icons"
 import {
@@ -17,13 +16,14 @@ import {
   toast,
 } from "@medusajs/ui"
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
+import React, { useState } from "react"
 import {
-  ModifierGroup,
   brandButtonStyle,
   createModifier,
   createModifierGroup,
   formatBRL,
   listModifierGroups,
+  type ModifierGroup,
   toCents,
   updateModifierGroup,
 } from "../../lib/restaurant-api"
@@ -94,11 +94,7 @@ const ModifiersPage = () => {
   })
 
   const createModifierMutation = useMutation({
-    mutationFn: (payload: {
-      groupId: string
-      name: string
-      price: number
-    }) =>
+    mutationFn: (payload: { groupId: string; name: string; price: number }) =>
       createModifier(payload.groupId, {
         name: payload.name,
         price: payload.price,
@@ -173,7 +169,8 @@ const ModifiersPage = () => {
         <div>
           <Heading level="h1">Modificadores &amp; Adicionais</Heading>
           <Text size="small" className="text-ui-fg-subtle">
-            Grupos de complementos, regras de seleção e preços adicionais em BRL.
+            Grupos de complementos, regras de seleção e preços adicionais em
+            BRL.
           </Text>
         </div>
         <Button
@@ -320,12 +317,12 @@ const ModifiersPage = () => {
                           </Table.Cell>
                         </Table.Row>
                       ))}
-                  </Table.Body>
-                </Table>
-              )}
+                    </Table.Body>
+                  </Table>
+                )}
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
       </div>
 
       <FocusModal open={groupModalOpen} onOpenChange={setGroupModalOpen}>

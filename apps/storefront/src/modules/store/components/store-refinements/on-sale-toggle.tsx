@@ -1,8 +1,7 @@
 "use client"
 
-import { useToggleRefinement } from "react-instantsearch"
-
 import { priceAttribute } from "@lib/search-client"
+import { useToggleRefinement } from "react-instantsearch"
 
 /**
  * Narrows to products whose calculated price is below their original in the

@@ -1,9 +1,9 @@
 import { Dialog, Transition } from "@headlessui/react"
-import { clx } from "@modules/common/components/ui"
-import React, { Fragment } from "react"
-
 import { ModalProvider, useModal } from "@lib/context/modal-context"
+import { clx } from "@modules/common/components/ui"
 import X from "@modules/common/icons/x"
+import type React from "react"
+import { Fragment } from "react"
 
 type ModalProps = {
   isOpen: boolean
@@ -11,7 +11,7 @@ type ModalProps = {
   size?: "small" | "medium" | "large"
   search?: boolean
   children: React.ReactNode
-  'data-testid'?: string
+  "data-testid"?: string
 }
 
 const Modal = ({
@@ -20,7 +20,7 @@ const Modal = ({
   size = "medium",
   search = false,
   children,
-  'data-testid': dataTestId
+  "data-testid": dataTestId,
 }: ModalProps) => {
   return (
     <Transition appear show={isOpen} as={Fragment}>

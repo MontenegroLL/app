@@ -1,6 +1,6 @@
+import { defineWidgetConfig } from "@medusajs/admin-sdk"
 import React, { useEffect } from "react"
 import { useTranslation } from "react-i18next"
-import { defineWidgetConfig } from "@medusajs/admin-sdk"
 
 const DEFAULT_LANGUAGE = "ptBR"
 const DEFAULT_APPLIED_KEY = "nucleo_lang_default_applied"
@@ -13,7 +13,8 @@ const SetDefaultLanguage = () => {
       return
     }
 
-    const alreadyApplied = window.localStorage.getItem(DEFAULT_APPLIED_KEY) === "true"
+    const alreadyApplied =
+      window.localStorage.getItem(DEFAULT_APPLIED_KEY) === "true"
     if (alreadyApplied) {
       return
     }

@@ -2,11 +2,12 @@
 
 import { isManual, isStripeLike } from "@lib/constants"
 import { placeOrder } from "@lib/data/cart"
-import { HttpTypes } from "@medusajs/types"
+import type { HttpTypes } from "@medusajs/types"
 import { Button } from "@modules/common/components/ui"
 import { useElements, useStripe } from "@stripe/react-stripe-js"
 import { useParams } from "next/navigation"
-import React, { useState } from "react"
+import type React from "react"
+import { useState } from "react"
 import ErrorMessage from "../error-message"
 
 type PaymentButtonProps = {

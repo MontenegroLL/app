@@ -1,10 +1,10 @@
 "use client"
 
-import { useEffect, useRef, useState } from "react"
-import { useSearchParams } from "next/navigation"
-import { Button } from "@modules/common/components/ui"
 import { confirmEmailVerification } from "@lib/data/customer"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
+import { Button } from "@modules/common/components/ui"
+import { useSearchParams } from "next/navigation"
+import { useEffect, useRef, useState } from "react"
 
 type VerificationState = "verifying" | "success" | "error"
 

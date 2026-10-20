@@ -16,7 +16,9 @@ export const convertToLocale = ({
   locale = "pt-BR",
 }: ConvertToLocaleParams) => {
   const normalizedCurrency =
-    !currency_code || isEmpty(currency_code) ? "BRL" : currency_code.toUpperCase()
+    !currency_code || isEmpty(currency_code)
+      ? "BRL"
+      : currency_code.toUpperCase()
 
   return new Intl.NumberFormat(locale || "pt-BR", {
     style: "currency",

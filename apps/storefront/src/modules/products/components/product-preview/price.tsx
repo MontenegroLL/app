@@ -1,5 +1,5 @@
-import { Text, clx } from "@modules/common/components/ui"
-import { VariantPrice } from "types/global"
+import { clx, Text } from "@modules/common/components/ui"
+import type { VariantPrice } from "types/global"
 
 export default async function PreviewPrice({ price }: { price: VariantPrice }) {
   if (!price) {

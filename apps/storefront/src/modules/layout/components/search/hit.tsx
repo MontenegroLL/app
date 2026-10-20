@@ -1,11 +1,10 @@
 "use client"
 
-import Image from "next/image"
-import type { Hit as HitType } from "instantsearch.js"
-
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
-import PlaceholderImage from "@modules/common/icons/placeholder-image"
 import { Text } from "@modules/common/components/ui"
+import PlaceholderImage from "@modules/common/icons/placeholder-image"
+import type { Hit as HitType } from "instantsearch.js"
+import Image from "next/image"
 
 export type ProductHit = HitType<{
   title: string | null

@@ -1,14 +1,14 @@
-import { Suspense } from "react"
+import { getLocale } from "@lib/data/locale-actions"
 
 import { listLocales } from "@lib/data/locales"
-import { getLocale } from "@lib/data/locale-actions"
 import { listRegions } from "@lib/data/regions"
-import { StoreRegion } from "@medusajs/types"
+import type { StoreRegion } from "@medusajs/types"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 import CartButton from "@modules/layout/components/cart-button"
 import Search from "@modules/layout/components/search"
 import SideMenu from "@modules/layout/components/side-menu"
 import StoreLogo from "@modules/layout/components/store-logo"
+import { Suspense } from "react"
 
 export default async function Nav() {
   const [regions, locales, currentLocale] = await Promise.all([
@@ -23,7 +23,11 @@ export default async function Nav() {
         <nav className="content-container txt-xsmall-plus text-ui-fg-subtle flex items-center justify-between w-full h-full text-small-regular">
           <div className="flex-1 basis-0 h-full flex items-center">
             <div className="h-full">
-              <SideMenu regions={regions} locales={locales} currentLocale={currentLocale} />
+              <SideMenu
+                regions={regions}
+                locales={locales}
+                currentLocale={currentLocale}
+              />
             </div>
           </div>
 
@@ -50,13 +54,13 @@ export default async function Nav() {
             </div>
             <Suspense
               fallback={
-                 <LocalizedClientLink
-                   className="hover:text-ui-fg-base flex gap-2"
-                   href="/cart"
-                   data-testid="nav-cart-link"
-                 >
-                   Carrinho (0)
-                 </LocalizedClientLink>
+                <LocalizedClientLink
+                  className="hover:text-ui-fg-base flex gap-2"
+                  href="/cart"
+                  data-testid="nav-cart-link"
+                >
+                  Carrinho (0)
+                </LocalizedClientLink>
               }
             >
               <CartButton />

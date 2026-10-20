@@ -1,4 +1,4 @@
-import { HttpTypes } from "@medusajs/types"
+import type { HttpTypes } from "@medusajs/types"
 import { Text } from "@modules/common/components/ui"
 
 type OrderDetailsProps = {

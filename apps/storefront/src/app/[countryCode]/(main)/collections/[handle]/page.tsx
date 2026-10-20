@@ -1,10 +1,9 @@
-import { Metadata } from "next"
-import { notFound } from "next/navigation"
-
 import { getCollectionByHandle } from "@lib/data/collections"
-import CollectionTemplate from "@modules/collections/templates"
-import { SortOptions } from "@modules/store/components/refinement-list/sort-products"
 import { parseOptionValueIds } from "@lib/util/product-option-filters"
+import CollectionTemplate from "@modules/collections/templates"
+import type { SortOptions } from "@modules/store/components/refinement-list/sort-products"
+import type { Metadata } from "next"
+import { notFound } from "next/navigation"
 
 type Props = {
   params: Promise<{ handle: string; countryCode: string }>
@@ -40,7 +39,7 @@ export default async function CollectionPage(props: Props) {
   const optionValueIds = parseOptionValueIds(searchParams)
 
   const collection = await getCollectionByHandle(params.handle).then(
-    (collection) => collection,
+    (collection) => collection
   )
 
   if (!collection) {

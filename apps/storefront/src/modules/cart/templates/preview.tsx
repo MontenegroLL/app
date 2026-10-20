@@ -1,10 +1,9 @@
 "use client"
 
 import repeat from "@lib/util/repeat"
-import { HttpTypes } from "@medusajs/types"
-import { Table, clx } from "@modules/common/components/ui"
-
+import type { HttpTypes } from "@medusajs/types"
 import Item from "@modules/cart/components/item"
+import { clx, Table } from "@modules/common/components/ui"
 import SkeletonLineItem from "@modules/skeletons/components/skeleton-line-item"
 
 type ItemsTemplateProps = {

@@ -1,9 +1,8 @@
+import { sdk } from "@lib/config"
 import {
   createInstantSearchAdapter,
   type MedusaSdkLike,
 } from "@medusajs/instantsearch-adapter"
-
-import { sdk } from "@lib/config"
 
 export const PRODUCT_INDEX_NAME = "product"
 

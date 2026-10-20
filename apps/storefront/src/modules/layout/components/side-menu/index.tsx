@@ -1,15 +1,14 @@
 "use client"
 
 import { Popover, PopoverPanel, Transition } from "@headlessui/react"
+import type { Locale } from "@lib/data/locales"
 import useToggleState from "@lib/hooks/use-toggle-state"
 import { ArrowRightMini, XMark } from "@medusajs/icons"
-import { HttpTypes } from "@medusajs/types"
+import type { HttpTypes } from "@medusajs/types"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
-import { Text, clx } from "@modules/common/components/ui"
+import { clx, Text } from "@modules/common/components/ui"
 import { Fragment } from "react"
 import LanguageSelect from "../language-select"
-import { Locale } from "@lib/data/locales"
-
 
 const SideMenuItems = {
   Início: "/",
@@ -106,10 +105,12 @@ const SideMenu = ({ regions, locales, currentLocale }: SideMenuProps) => {
                           />
                         </div>
                       )}
-                       <Text className="flex justify-between txt-compact-small">
-                         © {new Date().getFullYear()} {process.env.NEXT_PUBLIC_RESTAURANT_NAME || "Nucleo Delivery"}. Todos os
-                         direitos reservados.
-                       </Text>
+                      <Text className="flex justify-between txt-compact-small">
+                        © {new Date().getFullYear()}{" "}
+                        {process.env.NEXT_PUBLIC_RESTAURANT_NAME ||
+                          "Nucleo Delivery"}
+                        . Todos os direitos reservados.
+                      </Text>
                     </div>
                   </div>
                 </PopoverPanel>

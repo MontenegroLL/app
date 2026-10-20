@@ -1,8 +1,12 @@
 "use client"
 
+import useSearchSettled from "@lib/hooks/use-search-settled"
+import useToggleState from "@lib/hooks/use-toggle-state"
+import { PRODUCT_INDEX_NAME, searchClient } from "@lib/search-client"
 import { MagnifyingGlass } from "@medusajs/icons"
-import { useCallback, useEffect, useRef, useState } from "react"
+import { Text } from "@modules/common/components/ui"
 import type { SearchClient } from "instantsearch.js"
+import { useCallback, useEffect, useRef, useState } from "react"
 import {
   Configure,
   InstantSearch,
@@ -10,13 +14,8 @@ import {
   useInstantSearch,
   useSearchBox,
 } from "react-instantsearch"
-
-import useSearchSettled from "@lib/hooks/use-search-settled"
-import useToggleState from "@lib/hooks/use-toggle-state"
-import { PRODUCT_INDEX_NAME, searchClient } from "@lib/search-client"
-import { Text } from "@modules/common/components/ui"
 import SearchDrawer from "./drawer"
-import SearchHit, { ProductHit } from "./hit"
+import SearchHit, { type ProductHit } from "./hit"
 
 const HITS_PER_PAGE = 12
 const DEBOUNCE_MS = 250
@@ -70,7 +69,7 @@ const SearchPanel = ({ onNavigate }: { onNavigate: () => void }) => {
             className="px-4 py-6 text-center text-ui-fg-muted"
             data-testid="search-empty"
           >
-             Digite para buscar produtos.
+            Digite para buscar produtos.
           </Text>
         ) : status === "error" ? (
           <Text

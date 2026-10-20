@@ -1,16 +1,15 @@
 "use client"
 
-import { IconBadge, clx } from "@modules/common/components/ui"
+import { clx, IconBadge } from "@modules/common/components/ui"
+import ChevronDown from "@modules/common/icons/chevron-down"
 import {
-  SelectHTMLAttributes,
   forwardRef,
+  type SelectHTMLAttributes,
   useEffect,
   useImperativeHandle,
   useRef,
   useState,
 } from "react"
-
-import ChevronDown from "@modules/common/icons/chevron-down"
 
 type NativeSelectProps = {
   placeholder?: string

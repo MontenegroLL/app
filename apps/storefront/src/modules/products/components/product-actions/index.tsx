@@ -2,16 +2,20 @@
 
 import { addToCart } from "@lib/data/cart"
 import { useIntersection } from "@lib/hooks/use-in-view"
-import { HttpTypes } from "@medusajs/types"
-import { Button } from "@modules/common/components/ui"
+import type { HttpTypes } from "@medusajs/types"
 import Divider from "@modules/common/components/divider"
+import { Button } from "@modules/common/components/ui"
 import OptionSelect from "@modules/products/components/product-actions/option-select"
 import { isEqual } from "lodash"
-import { useParams, usePathname, useSearchParams } from "next/navigation"
+import {
+  useParams,
+  usePathname,
+  useRouter,
+  useSearchParams,
+} from "next/navigation"
 import { useEffect, useMemo, useRef, useState } from "react"
 import ProductPrice from "../product-price"
 import MobileActions from "./mobile-actions"
-import { useRouter } from "next/navigation"
 
 type ProductActionsProps = {
   product: HttpTypes.StoreProduct
@@ -179,8 +183,8 @@ export default function ProductActions({
           {!selectedVariant
             ? "Selecione uma opção"
             : !inStock || !isValidVariant
-            ? "Fora de estoque"
-            : "Adicionar ao carrinho"}
+              ? "Fora de estoque"
+              : "Adicionar ao carrinho"}
         </Button>
         <MobileActions
           product={product}

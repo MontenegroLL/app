@@ -1,9 +1,9 @@
-import { Metadata } from "next"
-import { notFound } from "next/navigation"
 import { listProducts } from "@lib/data/products"
 import { getRegion } from "@lib/data/regions"
+import type { HttpTypes } from "@medusajs/types"
 import ProductTemplate from "@modules/products/templates"
-import { HttpTypes } from "@medusajs/types"
+import type { Metadata } from "next"
+import { notFound } from "next/navigation"
 
 type Props = {
   params: Promise<{ countryCode: string; handle: string }>
@@ -12,7 +12,7 @@ type Props = {
 
 function getImagesForVariant(
   product: HttpTypes.StoreProduct,
-  selectedVariantId?: string,
+  selectedVariantId?: string
 ) {
   if (!selectedVariantId || !product.variants) {
     return product.images

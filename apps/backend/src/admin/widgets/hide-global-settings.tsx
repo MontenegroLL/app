@@ -1,5 +1,5 @@
-import React, { useEffect } from "react"
 import { defineWidgetConfig } from "@medusajs/admin-sdk"
+import React, { useEffect } from "react"
 import "../styles/global.css"
 
 const HIDE_SETTINGS_STYLE_ID = "nucleo-hide-global-settings-style"
@@ -66,7 +66,9 @@ const HideGlobalSettingsWidget = () => {
     // 2. Prevent manual URL access to macro pages by redirecting to safe settings store
     const checkAndRedirect = () => {
       const currentPath = window.location.pathname
-      const isForbidden = FORBIDDEN_PATHS.some((path) => currentPath.includes(path))
+      const isForbidden = FORBIDDEN_PATHS.some((path) =>
+        currentPath.includes(path)
+      )
       if (isForbidden) {
         window.location.replace("/app/settings/store")
       }

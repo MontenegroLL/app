@@ -1,8 +1,7 @@
 import repeat from "@lib/util/repeat"
-import { HttpTypes } from "@medusajs/types"
-import { Heading, Table } from "@modules/common/components/ui"
-
+import type { HttpTypes } from "@medusajs/types"
 import Item from "@modules/cart/components/item"
+import { Heading, Table } from "@modules/common/components/ui"
 import SkeletonLineItem from "@modules/skeletons/components/skeleton-line-item"
 
 type ItemsTemplateProps = {

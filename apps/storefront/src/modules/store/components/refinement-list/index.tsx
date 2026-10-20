@@ -1,14 +1,13 @@
 "use client"
 
-import { usePathname, useRouter, useSearchParams } from "next/navigation"
-import { useCallback, useMemo } from "react"
-
 import {
   OPTION_VALUE_QUERY_KEY,
   parseOptionValueIds,
 } from "@lib/util/product-option-filters"
+import { usePathname, useRouter, useSearchParams } from "next/navigation"
+import { useCallback, useMemo } from "react"
 import OptionsPicker from "./options-picker"
-import SortProducts, { SortOptions } from "./sort-products"
+import SortProducts, { type SortOptions } from "./sort-products"
 
 type RefinementListProps = {
   sortBy: SortOptions

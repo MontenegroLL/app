@@ -1,7 +1,7 @@
-import { Text } from "@modules/common/components/ui"
 import { getProductPrice } from "@lib/util/get-product-price"
-import { HttpTypes } from "@medusajs/types"
+import type { HttpTypes } from "@medusajs/types"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
+import { Text } from "@modules/common/components/ui"
 import Thumbnail from "../thumbnail"
 import PreviewPrice from "./price"
 

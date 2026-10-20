@@ -1,15 +1,15 @@
 import type {
   RemoteQueryFunction,
   SearchTypes,
-} from "@medusajs/framework/types";
+} from "@medusajs/framework/types"
 
-const RESOLVE_BATCH_SIZE = 200;
+const RESOLVE_BATCH_SIZE = 200
 
 // Core emits either a single `{ id }` or a batch of them.
 function payloadIds(data: unknown): string[] {
   return (Array.isArray(data) ? data : [data])
     .map((entry) => (entry as { id?: string } | undefined)?.id)
-    .filter((id): id is string => Boolean(id));
+    .filter((id): id is string => Boolean(id))
 }
 
 /**
@@ -23,18 +23,18 @@ async function relatedProductIds(
   fields: string[],
   ids: string[],
   pick: (row: Record<string, any>) => (string | null | undefined)[],
-  withDeleted: boolean,
+  withDeleted: boolean
 ): Promise<string[]> {
   const { data } = await query.graph({
     entity,
     fields,
     filters: { id: ids },
     withDeleted,
-  });
+  })
 
   return (data as Record<string, any>[])
     .flatMap(pick)
-    .filter((id): id is string => Boolean(id));
+    .filter((id): id is string => Boolean(id))
 }
 
 /**
@@ -44,10 +44,10 @@ async function relatedProductIds(
  */
 async function productIdsInSalesChannels(
   query: RemoteQueryFunction,
-  salesChannelIds: string[],
+  salesChannelIds: string[]
 ): Promise<string[]> {
-  const ids: string[] = [];
-  let skip = 0;
+  const ids: string[] = []
+  let skip = 0
 
   while (true) {
     const { search_result: result } = await query.search({
@@ -55,15 +55,15 @@ async function productIdsInSalesChannels(
       fields: ["id"],
       filters: { sales_channel_ids: salesChannelIds },
       pagination: { skip, take: RESOLVE_BATCH_SIZE },
-    });
+    })
 
-    ids.push(...result.hits.map((hit) => hit.id));
+    ids.push(...result.hits.map((hit) => hit.id))
 
     if (result.hits.length < RESOLVE_BATCH_SIZE) {
-      return ids;
+      return ids
     }
 
-    skip += RESOLVE_BATCH_SIZE;
+    skip += RESOLVE_BATCH_SIZE
   }
 }
 
@@ -74,20 +74,20 @@ async function productIdsInSalesChannels(
  */
 export async function resolveProductIds(
   event: { name: string; data: unknown },
-  { container: { query } }: SearchTypes.SearchIngestionContext,
+  { container: { query } }: SearchTypes.SearchIngestionContext
 ): Promise<string[]> {
-  const ids = payloadIds(event.data);
+  const ids = payloadIds(event.data)
 
   if (!ids.length) {
-    return [];
+    return []
   }
 
-  const [entity] = event.name.split(".");
-  const deleted = event.name.endsWith(".deleted");
+  const [entity] = event.name.split(".")
+  const deleted = event.name.endsWith(".deleted")
 
   switch (entity) {
     case "product":
-      return ids;
+      return ids
     case "product-variant":
       return relatedProductIds(
         query,
@@ -95,8 +95,8 @@ export async function resolveProductIds(
         ["product_id"],
         ids,
         (row) => [row.product_id],
-        deleted,
-      );
+        deleted
+      )
     case "product-option":
       return relatedProductIds(
         query,
@@ -104,8 +104,8 @@ export async function resolveProductIds(
         ["product_id"],
         ids,
         (row) => [row.product_id],
-        deleted,
-      );
+        deleted
+      )
     case "product-option-value":
       return relatedProductIds(
         query,
@@ -113,8 +113,8 @@ export async function resolveProductIds(
         ["option.product_id"],
         ids,
         (row) => [row.option?.product_id],
-        deleted,
-      );
+        deleted
+      )
     case "product-tag":
       return relatedProductIds(
         query,
@@ -122,8 +122,8 @@ export async function resolveProductIds(
         ["products.id"],
         ids,
         (row) => (row.products ?? []).map((product: any) => product?.id),
-        deleted,
-      );
+        deleted
+      )
     case "product-category":
       return relatedProductIds(
         query,
@@ -131,11 +131,11 @@ export async function resolveProductIds(
         ["products.id"],
         ids,
         (row) => (row.products ?? []).map((product: any) => product?.id),
-        deleted,
-      );
+        deleted
+      )
     case "sales-channel":
-      return productIdsInSalesChannels(query, ids);
+      return productIdsInSalesChannels(query, ids)
     default:
-      return [];
+      return []
   }
 }

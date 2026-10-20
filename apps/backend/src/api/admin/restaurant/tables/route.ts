@@ -1,6 +1,6 @@
-import { MedusaRequest, MedusaResponse } from "@medusajs/framework/http"
-import { MedusaError } from "@medusajs/framework/utils"
 import { randomUUID } from "node:crypto"
+import type { MedusaRequest, MedusaResponse } from "@medusajs/framework/http"
+import { MedusaError } from "@medusajs/framework/utils"
 import { RESTAURANT_MODULE } from "../../../../modules/restaurant"
 import { TABLE_STATUSES } from "../constants"
 
@@ -79,7 +79,8 @@ export async function POST(
       name_or_number: String(name_or_number).trim(),
       capacity: Math.trunc(parsedCapacity),
       status: status ?? "available",
-      qr_code_token: qr_code_token?.trim() || `mesa-${randomUUID().slice(0, 8)}`,
+      qr_code_token:
+        qr_code_token?.trim() || `mesa-${randomUUID().slice(0, 8)}`,
     },
   ])) as any[]
 

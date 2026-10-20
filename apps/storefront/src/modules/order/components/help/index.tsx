@@ -1,5 +1,5 @@
-import { Heading } from "@modules/common/components/ui"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
+import { Heading } from "@modules/common/components/ui"
 import React from "react"
 
 const Help = () => {

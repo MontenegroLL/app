@@ -1,16 +1,15 @@
 "use client"
 
-import type { Hit } from "instantsearch.js"
-import { useEffect, useRef } from "react"
-import { useHits, useInstantSearch } from "react-instantsearch"
-
 import useSearchSettled from "@lib/hooks/use-search-settled"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 import { Text } from "@modules/common/components/ui"
 import Thumbnail from "@modules/products/components/thumbnail"
 import SkeletonProductGrid from "@modules/skeletons/templates/skeleton-product-grid"
+import type { Hit } from "instantsearch.js"
+import { useEffect, useRef } from "react"
+import { useHits, useInstantSearch } from "react-instantsearch"
 import SearchPagination from "./pagination"
-import HitPrice, { HitPricing } from "./price"
+import HitPrice, { type HitPricing } from "./price"
 
 type ProductHit = Hit<
   {

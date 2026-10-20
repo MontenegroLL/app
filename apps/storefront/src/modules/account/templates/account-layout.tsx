@@ -1,9 +1,8 @@
-import React from "react"
+import type { HttpTypes } from "@medusajs/types"
 
 import UnderlineLink from "@modules/common/components/interactive-link"
-
+import type React from "react"
 import AccountNav from "../components/account-nav"
-import { HttpTypes } from "@medusajs/types"
 
 interface AccountLayoutProps {
   customer: HttpTypes.StoreCustomer | null

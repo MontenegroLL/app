@@ -1,6 +1,6 @@
-import axios, { AxiosInstance } from "axios"
-import { MedusaContainer } from "@medusajs/framework/types"
+import type { MedusaContainer } from "@medusajs/framework/types"
 import { ContainerRegistrationKeys } from "@medusajs/framework/utils"
+import axios, { type AxiosInstance } from "axios"
 
 export type IfoodEventCode =
   | "PLC" // Placed (Pedido Colocado)
@@ -51,7 +51,9 @@ export class IfoodService {
     // Verifica se recebeu o container do Medusa
     if (containerOrConfig && "resolve" in containerOrConfig) {
       try {
-        this.logger = containerOrConfig.resolve(ContainerRegistrationKeys.LOGGER)
+        this.logger = containerOrConfig.resolve(
+          ContainerRegistrationKeys.LOGGER
+        )
       } catch {
         // Logger opcional
       }
@@ -60,7 +62,8 @@ export class IfoodService {
     }
 
     this.clientId = config.clientId || process.env.IFOOD_CLIENT_ID || ""
-    this.clientSecret = config.clientSecret || process.env.IFOOD_CLIENT_SECRET || ""
+    this.clientSecret =
+      config.clientSecret || process.env.IFOOD_CLIENT_SECRET || ""
     this.merchantId = config.merchantId || process.env.IFOOD_MERCHANT_ID || ""
     this.baseUrl = config.baseUrl || "https://merchant-api.ifood.com.br"
 
@@ -162,7 +165,10 @@ export class IfoodService {
       }
 
       const errMsg = error.response?.data?.message || error.message
-      this.log("error", `[iFood] Falha ao consultar eventos (polling): ${errMsg}`)
+      this.log(
+        "error",
+        `[iFood] Falha ao consultar eventos (polling): ${errMsg}`
+      )
       return []
     }
   }
@@ -243,7 +249,10 @@ export class IfoodService {
       return true
     } catch (error: any) {
       const errMsg = error.response?.data?.message || error.message
-      this.log("error", `[iFood] Falha ao confirmar pedido ${orderId}: ${errMsg}`)
+      this.log(
+        "error",
+        `[iFood] Falha ao confirmar pedido ${orderId}: ${errMsg}`
+      )
       return false
     }
   }
@@ -270,7 +279,10 @@ export class IfoodService {
       return true
     } catch (error: any) {
       const errMsg = error.response?.data?.message || error.message
-      this.log("error", `[iFood] Falha ao despachar pedido ${orderId}: ${errMsg}`)
+      this.log(
+        "error",
+        `[iFood] Falha ao despachar pedido ${orderId}: ${errMsg}`
+      )
       return false
     }
   }

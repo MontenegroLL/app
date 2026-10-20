@@ -1,10 +1,10 @@
 "use server"
 
 import { sdk } from "@lib/config"
-import { OptionValueIds } from "@lib/util/product-option-filters"
+import type { OptionValueIds } from "@lib/util/product-option-filters"
 import { sortProducts } from "@lib/util/sort-products"
-import { HttpTypes } from "@medusajs/types"
-import { SortOptions } from "@modules/store/components/refinement-list/sort-products"
+import type { HttpTypes } from "@medusajs/types"
+import type { SortOptions } from "@modules/store/components/refinement-list/sort-products"
 import { getAuthHeaders, getCacheOptions } from "./cookies"
 import { getRegion, retrieveRegion } from "./regions"
 

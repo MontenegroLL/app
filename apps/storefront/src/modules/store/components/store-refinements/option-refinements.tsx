@@ -1,7 +1,7 @@
 "use client"
 
-import * as Accordion from "@radix-ui/react-accordion"
 import { ChevronDownMini } from "@medusajs/icons"
+import * as Accordion from "@radix-ui/react-accordion"
 import clsx from "clsx"
 import { useState } from "react"
 import { useRefinementList } from "react-instantsearch"

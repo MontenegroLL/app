@@ -1,11 +1,13 @@
-import { ExecArgs } from "@medusajs/framework/types"
+import type { ExecArgs } from "@medusajs/framework/types"
 import { ContainerRegistrationKeys } from "@medusajs/framework/utils"
 import {
   createApiKeysWorkflow,
   linkSalesChannelsToApiKeyWorkflow,
 } from "@medusajs/medusa/core-flows"
 
-export default async function getOrCreatePublishableKey({ container }: ExecArgs) {
+export default async function getOrCreatePublishableKey({
+  container,
+}: ExecArgs) {
   const logger = container.resolve(ContainerRegistrationKeys.LOGGER)
   const query = container.resolve(ContainerRegistrationKeys.QUERY)
 

@@ -7,13 +7,12 @@ import {
   ListboxOptions,
   Transition,
 } from "@headlessui/react"
-import { Fragment, useEffect, useMemo, useState, useTransition } from "react"
-import { useRouter } from "next/navigation"
-import ReactCountryFlag from "react-country-flag"
-
-import { StateType } from "@lib/hooks/use-toggle-state"
 import { updateLocale } from "@lib/data/locale-actions"
-import { Locale } from "@lib/data/locales"
+import type { Locale } from "@lib/data/locales"
+import type { StateType } from "@lib/hooks/use-toggle-state"
+import { useRouter } from "next/navigation"
+import { Fragment, useEffect, useMemo, useState, useTransition } from "react"
+import ReactCountryFlag from "react-country-flag"
 
 type LanguageOption = {
   code: string
@@ -119,9 +118,9 @@ const LanguageSelect = ({
         onChange={handleChange}
         defaultValue={
           currentLocale
-            ? options.find(
+            ? (options.find(
                 (o) => o.code.toLowerCase() === currentLocale.toLowerCase()
-              ) ?? DEFAULT_OPTION
+              ) ?? DEFAULT_OPTION)
             : DEFAULT_OPTION
         }
         disabled={isPending}
@@ -132,7 +131,6 @@ const LanguageSelect = ({
             {current && (
               <span className="txt-compact-small flex items-center gap-x-2">
                 {current.countryCode && (
-                  /* @ts-ignore */
                   <ReactCountryFlag
                     svg
                     style={{
@@ -166,7 +164,6 @@ const LanguageSelect = ({
                   className="py-2 hover:bg-gray-200 px-3 cursor-pointer flex items-center gap-x-2"
                 >
                   {o.countryCode ? (
-                    /* @ts-ignore */
                     <ReactCountryFlag
                       svg
                       style={{

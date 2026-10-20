@@ -1,12 +1,11 @@
 "use client"
 
-import type { SearchClient } from "instantsearch.js"
-import { Configure, InstantSearch } from "react-instantsearch"
-
 import { PRODUCT_INDEX_NAME, searchClient } from "@lib/search-client"
 import StoreHits from "@modules/store/components/store-hits"
 import StoreRefinements from "@modules/store/components/store-refinements"
 import StoreSearchBox from "@modules/store/components/store-search-box"
+import type { SearchClient } from "instantsearch.js"
+import { Configure, InstantSearch } from "react-instantsearch"
 
 const PRODUCT_LIMIT = 12
 

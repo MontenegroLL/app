@@ -1,16 +1,15 @@
 "use client"
 
-import { Plus } from "@medusajs/icons"
-import { Button, Heading } from "@modules/common/components/ui"
-import { useActionState, useEffect, useState } from "react"
-
 import { addCustomerAddress } from "@lib/data/customer"
 import useToggleState from "@lib/hooks/use-toggle-state"
-import { HttpTypes } from "@medusajs/types"
+import { Plus } from "@medusajs/icons"
+import type { HttpTypes } from "@medusajs/types"
 import CountrySelect from "@modules/checkout/components/country-select"
 import { SubmitButton } from "@modules/checkout/components/submit-button"
 import Input from "@modules/common/components/input"
 import Modal from "@modules/common/components/modal"
+import { Button, Heading } from "@modules/common/components/ui"
+import { useActionState, useEffect, useState } from "react"
 
 const AddAddress = ({
   region,

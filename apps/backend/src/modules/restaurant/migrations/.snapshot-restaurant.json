@@ -1,7 +1,5 @@
 {
-  "namespaces": [
-    "public"
-  ],
+  "namespaces": ["public"],
   "name": "public",
   "tables": [
     {
@@ -181,9 +179,7 @@
         },
         {
           "keyName": "modifier_group_pkey",
-          "columnNames": [
-            "id"
-          ],
+          "columnNames": ["id"],
           "composite": false,
           "constraint": true,
           "primary": true,
@@ -380,9 +376,7 @@
         },
         {
           "keyName": "modifier_pkey",
-          "columnNames": [
-            "id"
-          ],
+          "columnNames": ["id"],
           "composite": false,
           "constraint": true,
           "primary": true,
@@ -393,13 +387,9 @@
       "foreignKeys": {
         "modifier_modifier_group_id_foreign": {
           "constraintName": "modifier_modifier_group_id_foreign",
-          "columnNames": [
-            "modifier_group_id"
-          ],
+          "columnNames": ["modifier_group_id"],
           "localTableName": "public.modifier",
-          "referencedColumnNames": [
-            "id"
-          ],
+          "referencedColumnNames": ["id"],
           "referencedTableName": "public.modifier_group",
           "deleteRule": "cascade",
           "updateRule": "cascade"
@@ -470,12 +460,7 @@
           "scale": null,
           "default": "'available'",
           "comment": null,
-          "enumItems": [
-            "available",
-            "occupied",
-            "reserved",
-            "billing"
-          ],
+          "enumItems": ["available", "occupied", "reserved", "billing"],
           "mappedType": "enum"
         },
         "qr_code_token": {
@@ -557,9 +542,7 @@
         },
         {
           "keyName": "restaurant_table_pkey",
-          "columnNames": [
-            "id"
-          ],
+          "columnNames": ["id"],
           "composite": false,
           "constraint": true,
           "primary": true,
@@ -617,11 +600,7 @@
           "scale": null,
           "default": "'open'",
           "comment": null,
-          "enumItems": [
-            "open",
-            "closed",
-            "cancelled"
-          ],
+          "enumItems": ["open", "closed", "cancelled"],
           "mappedType": "enum"
         },
         "restaurant_table_id": {
@@ -712,9 +691,7 @@
         },
         {
           "keyName": "tab_pkey",
-          "columnNames": [
-            "id"
-          ],
+          "columnNames": ["id"],
           "composite": false,
           "constraint": true,
           "primary": true,
@@ -725,13 +702,9 @@
       "foreignKeys": {
         "tab_restaurant_table_id_foreign": {
           "constraintName": "tab_restaurant_table_id_foreign",
-          "columnNames": [
-            "restaurant_table_id"
-          ],
+          "columnNames": ["restaurant_table_id"],
           "localTableName": "public.tab",
-          "referencedColumnNames": [
-            "id"
-          ],
+          "referencedColumnNames": ["id"],
           "referencedTableName": "public.restaurant_table",
           "deleteRule": "cascade",
           "updateRule": "cascade"

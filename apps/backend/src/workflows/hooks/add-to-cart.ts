@@ -1,8 +1,8 @@
-import { addToCartWorkflow } from "@medusajs/medusa/core-flows"
 import {
   ContainerRegistrationKeys,
   MedusaError,
 } from "@medusajs/framework/utils"
+import { addToCartWorkflow } from "@medusajs/medusa/core-flows"
 import { RESTAURANT_MODULE } from "../../modules/restaurant"
 
 type SelectedModifier = {
@@ -59,7 +59,9 @@ addToCartWorkflow.hooks.validate(async ({ input }, { container }) => {
   const modifiers = (await restaurant.listModifiers(
     modifierIds.length ? { id: modifierIds } : { id: [] }
   )) as any[]
-  const modifierById = new Map(modifiers.map((modifier) => [modifier.id, modifier]))
+  const modifierById = new Map(
+    modifiers.map((modifier) => [modifier.id, modifier])
+  )
 
   const groupIds = [
     ...new Set(

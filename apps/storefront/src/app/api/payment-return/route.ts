@@ -1,9 +1,9 @@
 import { sdk } from "@lib/config"
 import { placeOrder } from "@lib/data/cart"
 import { getAuthHeaders, setCartId } from "@lib/data/cookies"
-import { HttpTypes } from "@medusajs/types"
+import type { HttpTypes } from "@medusajs/types"
 import { unstable_rethrow } from "next/navigation"
-import { NextRequest, NextResponse } from "next/server"
+import { type NextRequest, NextResponse } from "next/server"
 
 export async function GET(req: NextRequest) {
   const { origin, searchParams } = req.nextUrl

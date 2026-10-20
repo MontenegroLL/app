@@ -1,7 +1,7 @@
 "use client"
 
-import React, { useState } from "react"
 import { getLogoUrl, getRestaurantName } from "@lib/util/env"
+import React, { useState } from "react"
 
 type StoreLogoProps = {
   className?: string

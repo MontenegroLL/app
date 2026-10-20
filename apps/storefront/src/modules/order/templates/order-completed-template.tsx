@@ -1,14 +1,13 @@
-import { Heading } from "@modules/common/components/ui"
-import { cookies as nextCookies } from "next/headers"
-
+import type { HttpTypes } from "@medusajs/types"
 import CartTotals from "@modules/common/components/cart-totals"
+import { Heading } from "@modules/common/components/ui"
 import Help from "@modules/order/components/help"
 import Items from "@modules/order/components/items"
 import OnboardingCta from "@modules/order/components/onboarding-cta"
 import OrderDetails from "@modules/order/components/order-details"
-import ShippingDetails from "@modules/order/components/shipping-details"
 import PaymentDetails from "@modules/order/components/payment-details"
-import { HttpTypes } from "@medusajs/types"
+import ShippingDetails from "@modules/order/components/shipping-details"
+import { cookies as nextCookies } from "next/headers"
 
 type OrderCompletedTemplateProps = {
   order: HttpTypes.StoreOrder

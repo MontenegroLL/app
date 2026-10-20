@@ -1,6 +1,9 @@
-import { ExecArgs } from "@medusajs/framework/types"
+import type { ExecArgs } from "@medusajs/framework/types"
 import { ContainerRegistrationKeys, Modules } from "@medusajs/framework/utils"
-import { updateStockLocationsWorkflow, updateStoresWorkflow } from "@medusajs/medusa/core-flows"
+import {
+  updateStockLocationsWorkflow,
+  updateStoresWorkflow,
+} from "@medusajs/medusa/core-flows"
 
 export default async function verifyAndPolishStore({ container }: ExecArgs) {
   const logger = container.resolve(ContainerRegistrationKeys.LOGGER)
@@ -21,7 +24,9 @@ export default async function verifyAndPolishStore({ container }: ExecArgs) {
   const store = stores[0]
   logger.info(`Store Name: ${store.name}`)
   logger.info(`Default Region ID: ${store.default_region_id}`)
-  logger.info(`Supported Currencies: ${JSON.stringify(store.supported_currencies)}`)
+  logger.info(
+    `Supported Currencies: ${JSON.stringify(store.supported_currencies)}`
+  )
 
   // 2. Se a localização se chama "European Warehouse", renomear para "Depósito Central"
   const { data: locations } = await query.graph({
@@ -30,8 +35,13 @@ export default async function verifyAndPolishStore({ container }: ExecArgs) {
   })
 
   for (const loc of locations) {
-    if (loc.name?.toLowerCase().includes("european") || loc.name?.toLowerCase().includes("warehouse")) {
-      logger.info(`Renomeando stock location ${loc.name} -> Deposito Central...`)
+    if (
+      loc.name?.toLowerCase().includes("european") ||
+      loc.name?.toLowerCase().includes("warehouse")
+    ) {
+      logger.info(
+        `Renomeando stock location ${loc.name} -> Deposito Central...`
+      )
       await updateStockLocationsWorkflow(container).run({
         input: {
           selector: { id: loc.id },
@@ -65,7 +75,13 @@ export default async function verifyAndPolishStore({ container }: ExecArgs) {
 
   const { data: updatedStores } = await query.graph({
     entity: "store",
-    fields: ["id", "name", "default_region_id", "default_location_id", "supported_currencies.*"],
+    fields: [
+      "id",
+      "name",
+      "default_region_id",
+      "default_location_id",
+      "supported_currencies.*",
+    ],
   })
   logger.info(`Estado final da Store: ${JSON.stringify(updatedStores[0])}`)
 }

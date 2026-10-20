@@ -1,10 +1,10 @@
-import { Heading } from "@modules/common/components/ui"
+import type { HttpTypes } from "@medusajs/types"
 
 import ItemsPreviewTemplate from "@modules/cart/templates/preview"
 import DiscountCode from "@modules/checkout/components/discount-code"
 import CartTotals from "@modules/common/components/cart-totals"
 import Divider from "@modules/common/components/divider"
-import { HttpTypes } from "@medusajs/types"
+import { Heading } from "@modules/common/components/ui"
 
 const CheckoutSummary = ({ cart }: { cart: HttpTypes.StoreCart }) => {
   return (

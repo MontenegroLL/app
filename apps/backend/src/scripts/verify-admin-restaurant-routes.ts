@@ -1,12 +1,12 @@
-import { ExecArgs } from "@medusajs/framework/types"
+import type { ExecArgs } from "@medusajs/framework/types"
 import { ContainerRegistrationKeys } from "@medusajs/framework/utils"
-import { RESTAURANT_MODULE } from "../modules/restaurant"
-import * as tablesRoute from "../api/admin/restaurant/tables/route"
-import * as tableRoute from "../api/admin/restaurant/tables/[id]/route"
-import * as qrCodeRoute from "../api/admin/restaurant/tables/[id]/qr-code/route"
-import * as modifierGroupsRoute from "../api/admin/restaurant/modifier-groups/route"
-import * as modifierGroupRoute from "../api/admin/restaurant/modifier-groups/[id]/route"
 import * as modifierGroupModifiersRoute from "../api/admin/restaurant/modifier-groups/[id]/modifiers/route"
+import * as modifierGroupRoute from "../api/admin/restaurant/modifier-groups/[id]/route"
+import * as modifierGroupsRoute from "../api/admin/restaurant/modifier-groups/route"
+import * as qrCodeRoute from "../api/admin/restaurant/tables/[id]/qr-code/route"
+import * as tableRoute from "../api/admin/restaurant/tables/[id]/route"
+import * as tablesRoute from "../api/admin/restaurant/tables/route"
+import { RESTAURANT_MODULE } from "../modules/restaurant"
 
 type Handler = (req: any, res: any) => Promise<void>
 
@@ -89,10 +89,15 @@ export default async function verifyAdminRestaurantRoutes({
     )}`
   )
 
-  const createResult = await call(tablesRoute.POST, container, {}, {
-    name_or_number: "Mesa Verificacao",
-    capacity: 6,
-  })
+  const createResult = await call(
+    tablesRoute.POST,
+    container,
+    {},
+    {
+      name_or_number: "Mesa Verificacao",
+      capacity: 6,
+    }
+  )
   const createdTable = createResult.payload?.table
   const createdTableId = createdTable?.id
   check(
@@ -107,19 +112,29 @@ export default async function verifyAdminRestaurantRoutes({
     `status=${createResult.status} table=${JSON.stringify(createdTable)}`
   )
 
-  const invalidStatusCreate = await call(tablesRoute.POST, container, {}, {
-    name_or_number: "Mesa Invalida",
-    status: "voando",
-  })
+  const invalidStatusCreate = await call(
+    tablesRoute.POST,
+    container,
+    {},
+    {
+      name_or_number: "Mesa Invalida",
+      status: "voando",
+    }
+  )
   check(
     "admin-table-create-invalid-status",
     !invalidStatusCreate.ok && /invalido/.test(invalidStatusCreate.error ?? ""),
     invalidStatusCreate.error ?? `status=${invalidStatusCreate.status}`
   )
 
-  const missingNameCreate = await call(tablesRoute.POST, container, {}, {
-    capacity: 2,
-  })
+  const missingNameCreate = await call(
+    tablesRoute.POST,
+    container,
+    {},
+    {
+      capacity: 2,
+    }
+  )
   check(
     "admin-table-create-missing-name",
     !missingNameCreate.ok && /obrigatorio/.test(missingNameCreate.error ?? ""),
@@ -170,7 +185,9 @@ export default async function verifyAdminRestaurantRoutes({
     getMissingTable.error ?? `status=${getMissingTable.status}`
   )
 
-  const qrResult = await call(qrCodeRoute.GET, container, { id: createdTableId })
+  const qrResult = await call(qrCodeRoute.GET, container, {
+    id: createdTableId,
+  })
   check(
     "admin-table-qr-code-target",
     qrResult.ok &&
@@ -208,13 +225,18 @@ export default async function verifyAdminRestaurantRoutes({
       .join(", ")}`
   )
 
-  const createGroup = await call(modifierGroupsRoute.POST, container, {}, {
-    name: "Grupo Verificacao",
-    min_selection: 1,
-    max_selection: 2,
-    is_required: true,
-    modifiers: [{ name: "Extra Verificacao", price: 350 }],
-  })
+  const createGroup = await call(
+    modifierGroupsRoute.POST,
+    container,
+    {},
+    {
+      name: "Grupo Verificacao",
+      min_selection: 1,
+      max_selection: 2,
+      is_required: true,
+      modifiers: [{ name: "Extra Verificacao", price: 350 }],
+    }
+  )
   const createdGroup = createGroup.payload?.modifier_group
   const createdGroupId = createdGroup?.id
   const createdModifier = createdGroup?.modifiers?.[0]
@@ -231,20 +253,31 @@ export default async function verifyAdminRestaurantRoutes({
     `group=${JSON.stringify(createdGroup)}`
   )
 
-  const invalidRange = await call(modifierGroupsRoute.POST, container, {}, {
-    name: "Grupo Invalido",
-    min_selection: 3,
-    max_selection: 1,
-  })
+  const invalidRange = await call(
+    modifierGroupsRoute.POST,
+    container,
+    {},
+    {
+      name: "Grupo Invalido",
+      min_selection: 3,
+      max_selection: 1,
+    }
+  )
   check(
     "admin-modifier-group-invalid-range",
-    !invalidRange.ok && /menor que min_selection/.test(invalidRange.error ?? ""),
+    !invalidRange.ok &&
+      /menor que min_selection/.test(invalidRange.error ?? ""),
     invalidRange.error ?? `status=${invalidRange.status}`
   )
 
-  const missingGroupName = await call(modifierGroupsRoute.POST, container, {}, {
-    min_selection: 0,
-  })
+  const missingGroupName = await call(
+    modifierGroupsRoute.POST,
+    container,
+    {},
+    {
+      min_selection: 0,
+    }
+  )
   check(
     "admin-modifier-group-missing-name",
     !missingGroupName.ok && /obrigatorio/.test(missingGroupName.error ?? ""),
