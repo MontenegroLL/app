@@ -1,0 +1,59 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: Typecheck & Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Cache Yarn
+        uses: actions/cache@v4
+        with:
+          path: |
+            .yarn/cache
+            node_modules
+            apps/*/node_modules
+          key: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+
+      - name: Instalar dependências
+        run: yarn install --frozen-lockfile
+
+      - name: Typecheck — backend
+        run: yarn tsc --noEmit
+        working-directory: apps/backend
+
+      - name: Typecheck — storefront
+        run: yarn tsc --noEmit
+        working-directory: apps/storefront
+
+      - name: Build — backend
+        run: yarn build
+        working-directory: apps/backend
+        env:
+          # Valores mínimos para o build do Medusa não falhar por env ausente.
+          JWT_SECRET: ci-placeholder
+          COOKIE_SECRET: ci-placeholder
+          DATABASE_URL: postgres://postgres:postgres@localhost:5432/medusa
+
+      - name: Build — storefront
+        run: yarn build
+        working-directory: apps/storefront
